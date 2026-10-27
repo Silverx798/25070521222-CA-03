@@ -1,0 +1,368 @@
+:root {
+  --bg-primary: #070a0d;
+  --bg-secondary: #0d1217;
+  --bg-surface: #131a22;
+  --bg-surface-elevated: #1a2430;
+  --bg-glass: rgba(13, 18, 23, 0.78);
+  --bg-glass-card: rgba(18, 26, 34, 0.82);
+
+  --border-subtle: rgba(212, 175, 55, 0.18);
+  --border-highlight: rgba(212, 175, 55, 0.45);
+  --border-dark: rgba(255, 255, 255, 0.08);
+
+  --gold-primary: #d4af37;
+  --gold-hover: #ecd177;
+  --gold-muted: #8c7324;
+  --gold-glow: rgba(212, 175, 55, 0.28);
+
+  --celadon-primary: #4c8283;
+  --celadon-glow: rgba(76, 130, 131, 0.35);
+
+  --crimson-primary: #942b32;
+  --crimson-glow: rgba(148, 43, 50, 0.35);
+
+  --text-primary: #f2ece1;
+  --text-secondary: #b2c0cc;
+  --text-muted: #6a7988;
+  --text-gold: #e2c158;
+
+  --font-serif: 'Cinzel', serif;
+  --font-reading: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.08);
+  --shadow-gold: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Antiquarian Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2936;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-muted);
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+}
+
+a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+a:hover {
+  color: var(--gold-hover);
+  text-shadow: 0 0 8px var(--gold-glow);
+}
+
+button {
+  font-family: var(--font-serif);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  background-color: rgba(10, 15, 20, 0.85);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--gold-primary);
+  outline: none;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* Atmospheric Ambient Canvas */
+.ambient-fog-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* Global Content Shell */
+.app-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* UI Component Utility Classes */
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-subtle);
+  color: var(--gold-primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(19, 26, 34, 0.9);
+  border: 1px solid var(--border-dark);
+}
+
+.category-tag.cryptids {
+  color: #8ed081;
+  border-color: rgba(142, 208, 129, 0.3);
+}
+
+.category-tag.urban-legends {
+  color: #79c0ff;
+  border-color: rgba(121, 192, 255, 0.3);
+}
+
+.category-tag.ghost-stories {
+  color: #d2a8ff;
+  border-color: rgba(210, 168, 255, 0.3);
+}
+
+.category-tag.haunted-places {
+  color: #ffa657;
+  border-color: rgba(255, 166, 87, 0.3);
+}
+
+.category-tag.myths-legends {
+  color: #e3b341;
+  border-color: rgba(227, 179, 65, 0.3);
+}
+
+.category-tag.unexplained-phenomena {
+  color: #ff7b72;
+  border-color: rgba(255, 123, 114, 0.3);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #d4af37 0%, #a6841f 100%);
+  color: #070a0d;
+  font-weight: 700;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(255, 230, 140, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ecd177 0%, #c49f2b 100%);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+  color: #000;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(18, 25, 33, 0.85);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+  background: rgba(25, 35, 47, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+/* Card Etching */
+.mythos-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.mythos-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.mythos-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-highlight);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 0 20px var(--gold-glow);
+}
+
+.mythos-card:hover::before {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes flickerEye {
+  0% { opacity: 0.25; filter: drop-shadow(0 0 2px #d4af37); }
+  50% { opacity: 0.9; filter: drop-shadow(0 0 12px #ff3b30); }
+  100% { opacity: 0.4; filter: drop-shadow(0 0 4px #d4af37); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulseMarker {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Leaflet Map Dark Theme Overrides */
+.osm-dark-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(88%) contrast(95%) saturate(70%);
+}
+
+.leaflet-container {
+  background-color: #070a0f !important;
+  font-family: var(--font-sans);
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(13, 18, 23, 0.95) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(13, 18, 23, 0.95) !important;
+}
+
+/* Responsive Nav Layout */
+@media (min-width: 861px) {
+  .desktop-search {
+    display: block !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .desktop-search {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ambient-fog-canvas {
+    display: none;
+  }
+}
